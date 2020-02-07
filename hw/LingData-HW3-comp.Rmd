@@ -12,42 +12,51 @@ The solutions should be submitted via GitHub.
 ## Part 1. A preliminary training  
 
 *Do not use R (RStudio) to solve problems in Part 1. Answers won't be evaluated. *
-
 ### Problem 1
-
-Look at the following histogram and answer the questions.
-
+Look at the following histogram and answer the questions.<br>
 ```{r, echo=FALSE}
 set.seed(1234)
 x <- rnorm(20, mean=3, sd=6)
 hist(x, col="tomato", main="")
 ```
-
 a. What is the proportion of values in the sample that exceed $5$? Explain your answer.
+
+
+On the graph above we can see that values between $-15$ and $-10$ have the frequency of $1$, values between $-5$ and $0$ have the frequency of $10$, and values between $0$ and $5$ have the frequency of $4$. Meanwhile, values between $5$ and $10$ have the frequncy of $4$ and values between $15$ and $20$ have the frequency of $1$.
+<br><br>Total values: $$1 + 10 + 4 + 4 + 1 = 20$$
+<br>Values that exceed five: $$1 + 4 = 5$$ 
+<br>Thus, the proportion of the sample that exceeds $5$ equals to $5/20=1/4$.
+
+
 b. Indicate the interval where the median of this sample can lie. Explain your answer.
+
+
+The interval between $-5$ and $0$ seems like the interval where the median should lie. The values in this interval are the most likely ones in this sample ($10/20$). By definition the median should divide the sample in two equal halves. Seeing that this interval lies near the middle, and also taking into account that the histogram is slightly skewered to the left, we can suppose that this is where the median lies.
+
 c. How the histogram will change if we add an element $7$ to the sample? Explain your answer.
 
+The interval between $5$ and $10$ will have an additional element, so its absolute frequency will rise by one and will be equal to $5$.
+
+
 ### Problem 2
-
-a. Look at the histograms of two samples. They illustrate the distribution of normalized average reaction time to frequent words (in ms) in two groups of people.
-
+a. Look at the histograms of two samples. They illustrate the distribution of normalized average reaction time to frequent words (in ms) in two groups of people.<br>
 ```{r, echo=FALSE, fig.height=3}
 set.seed(1234)
 sample1 <- rnorm(100, 500, 50)
 sample2 <- rnorm(100, 500, 20)
 hist(sample1, col="lightblue", xlim=c(100, 900))
 ```
-
 ```{r, echo=FALSE, fig.height=3}
 hist(sample2, col="lightgreen", xlim=c(100, 900))
 ```
-
-Which of the samples has a larger variance? Explain your answer.
-
 \newpage
+<br>Which of the samples has a larger variance? Explain your answer.
+
+
+Variance is lower when tall bars are closer to the mean. We can see that both histograms are on the same scale yet the bars on the second sample are considerably higher. Besides, the first sample has values that exceed the range of the second sample. That is also a sign. Thus, we conclude that the first sample has higher variance.
+
 
 b. Look at the histograms of two samples.
-
 ```{r, echo=FALSE, fig.height=8}
 set.seed(12)
 sample1 <- rnorm(100, 3, 5)
@@ -56,11 +65,13 @@ par(mfrow=c(2,2))
 hist(sample1, col="lightblue", xlim=c(-40, 40))
 hist(sample2, col="lightgreen", xlim=c(5, 15))
 ```
+<br>Which of the samples has a larger variance? Explain your answer.
 
-Which of the samples has a larger variance? Explain your answer.
+
+The fact that the first sample has higher variance is obvious because the interval of values is much bigger. We can see that the difference between min an max value is approximately 20 on the first sample and about 4 on the second.
+
 
 ## Part 2
-
 *Do not use R (RStudio) to solve problems in Part 2. Answers for problem 3 will be evaluated. Please paste YES or NO into (empty) code blocks and explain you answer below the block.*
 
 ### Problem 3
@@ -76,34 +87,38 @@ hist(mistakes, breaks=60, col= "deepskyblue", ylim=c(0, 40))
 ### 3.1
 Is it true that $50$% students made more than $35$ mistakes?
 ```
-
+NO
 ```
 Explain your answer below:
+It's clear that the majority of observations lies the left of the middle of the graph, certainly below 50.
 
 
 ### 3.2
 Is it true that most students made no more than $10$ mistakes?
 ```
-
+NO
 ```
 Explain your answer below:
-
+It seems that most observations lie between about 10 and 25. So it can't be said that most student made 10 or less mistakes.
 
 ### 3.3
 Which of the following values is closer to be the median of `mistakes`: $10$, $20$, $30$, $40$?
 ```
-
+20
 ```
 Explain your answer below:
+We can see that a significant part of observations is concentrated to the left of 20. Values to the right are more spread out, but it seems to be about the same in total as the left side.
 
 
 ### Problem 4. Exact binomial test
 
 The null hypothesis is that $p=0$ (i.e. no success is possible). In a dataset, there is only one success out of 1 000 000 observations. Will you reject the null hypothesis? 
 ```
-
+NO
 ```
+
 Explain your answer below:
+Alternative hypothesis is that p > 0. To reject the null hypothesis p-value must exceed $\alpha$. In our dataset p-value equals to 0 (the possibility that there will be 1 or more successes) which is lower that any $\alpha$. Thus, the null hypothesis is rejected.
 
 
 ## Part 3
@@ -119,19 +134,20 @@ $44$, $50$, $42$, $64$, $66$, $42$, $72$, $56$, $72$, $54$, $46$, $48$, $48$, $5
 ### 5.1
 Arrange them in a vector and call it `age`. 
 ```{r}
-
+age <- c(44, 50, 42, 64, 66, 42, 72, 56, 72, 54, 46, 48, 48, 52, 50, 66, 84)
+age
 ```
 
 ### 5.2
 Examine the type of `age` variable (numeric, character, etc).
-```
-
+```{r}
+class(age)
 ```
 
 ### 5.3
 Plot the histogram of the vector `age` with $5$ bins. Change its color to any you want. (Use either R basic or ggplot2 style for plotting.)
 ```{r}
-
+hist(age, breaks = 4, col = 'cyan')
 ```
 
 
@@ -143,13 +159,14 @@ Here is a series of words:
 ### 6.1
 Arrange elements above in a vector and call it `words` 
 ```{r}
-
+words <- c('pie', 'bar', 'bar', 'pie', 'pie', 'bar', 'bar', 'chart')
+words
 ```
 
 ### 6.2
 Calculate the relative frequences of values in `words` measured in percent.
 ```{r}
-
+table(words)/sum(table(words))
 ```
 
 ## Problem 7. Position of verbs in verses
@@ -164,7 +181,7 @@ Variables:
 - LineText — a sampled verse.  
 - Author — the author of the text.  
 
-Can we decide that in verses written in 1920s, verbs in the rhyming posision are used differently (more often or less often) than expected for verbs in general? 
+Can we decide that in verses written in 1920s, verbs in the rhyming position are used differently (more often or less often) than expected for verbs in general? 
 
 Let's assume that the probability for verbs to be used in any position ('in general') is 17% (according to [](http://www.ruscorpora.ru/new/corpora-stat.html) ).
 
@@ -172,41 +189,61 @@ Let's assume that the probability for verbs to be used in any position ('in gene
 
 What is your null hypothesis $H_0$ and what is the alternative hypothesis $H_1$?
 ```
-H0: 
-H1: 
+H0: The probability of a verb in the rhyming position is the same as the probability of
+a verb in general which is 0.17, so p(V) = 0.17
+H1: The alternative hypothesis is that the probability is different, so p(V) != 0.17
 ```
 
 ### 7.2
 
 Read the dataset [“The last words in verses”](https://raw.githubusercontent.com/LingData2019/LingData2020/master/data/poetry_last_in_lines.csv). Filter out the relevant observations from 1920s, calculate the number of verbs observed in the sample, and the sample size. 
 ```{r}
-
+library(readr)
+library(tidyverse)
+df <- read_delim("https://raw.githubusercontent.com/LingData2019/LingData2020/master/data/poetry_last_in_lines.csv",  "\t")
+df_1920s <- df %>%
+  filter(Decade == '1920s')
+sample_size <- nrow(df_1920s)
+verb_num <- df_1920s %>%
+  filter(UPoS == 'VERB') %>%
+  nrow()
+paste('Sample size:', sample_size)
+paste('Number of verbs:', verb_num)
 ```
 
 ### 7.3
 
 Use an exact binomial test to calculate p-value. 
 ```{r}
-
+binom.test(verb_num, sample_size, alternative = 'two.sided', conf.level = 0.95, p = 0.17)
 ```
 
 ### 7.4 Interpret results
 
-Give your interpretation of obtained p-value. Answer the initial question: Can we decide that in verses written in 1920s, verbs are used in the rhyming posision more often or less often than expected?
+Give your interpretation of obtained p-value. Answer the initial question: Can we decide that in verses written in 1920s, verbs are used in the rhyming position more often or less often than expected?
 ```
-
+Since confidence level was set at 0.95, the value of alpha equals to 0.05. The obtained p-value (0.2297) is considerably larger than alpha, so we can't reject the null hypothesis. Consequently, we can conclude that verbs are not used more or less frequently in the rhyming position.
 ```
 
 ### 7.5 
 *(A bonus problem, extra points in evaluation)*.
 Repeat 2.3 for verses written in the 1820s.
 ```{r}
+df_1820s <- df %>%
+  filter(Decade == '1820s')
+sample_size <- nrow(df_1820s)
+verb_num <- df_1820s %>%
+  filter(UPoS == 'VERB') %>%
+  nrow()
+paste('Sample size:', sample_size)
+paste('Number of verbs:', verb_num)
 
+binom.test(verb_num, sample_size, alternative = 'two.sided', conf.level = 0.95, p = 0.17)
 ```
 
 Write down your general conlusions about data provided for both 1920s and 1820s data.
 ```
-
+Here we can see that p-value is even higher, so we can't reject the null hypothesis either. Despite the different proportions verb distribution doesn't seem to be affected by the rhyming position.
 ```
 
 ### Problem 8. One-sample t-test
@@ -215,23 +252,29 @@ To perform a one-sample t-test, you can use the following example of R code:
 ```
 t.test(sample, mu = 7725) # mu is a population mean
 ```
+```{r}
+df <- read_csv("https://raw.githubusercontent.com/LingData2019/LingData2020/master/data/icelandic.csv")
+df_shg05 <- df %>% 
+  filter(speaker == 'shg05')
+```
+
 
 ### 8.1
 Write down a two-tailed alternative hypothesis.
 ```
-H1: 
+H1: The population mean of vowel duration for speaker shg05 is not equal to 73.
 ```
 
 ### 8.2
 Perform a one-sample t-test. 
 ```{r}
-
+t.test(df_shg05$vowel.dur, mu = 73)
 ```
 
 ### 8.3
 Interpret results. 
 ```
-
+The obtained p-value is larger than alpha (0.05). This means that the null hypothesis cannot be rejected. In other words, with confidence of 95% we can say the mean vowel duration for speaker shg05 is equal to 73.
 ```
 
 #### Supplementary reading
@@ -248,4 +291,4 @@ On measures of central tendency:
 
 On t-test: 
 
-* Gries 2009, Chapter 3 (p. 198). 
+* Gries 2009, Chapter 3 (p. 198).  
